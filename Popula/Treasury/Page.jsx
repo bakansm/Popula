@@ -1,60 +1,71 @@
-const { accountId } = props;
+const { data } = props;
 
-const Header = styled.div`
-	padding-top: 26px;
+const Card = styled.div`
+	padding: 15px 20px;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
 `;
 
-const Title = styled.div`
-	opacity: 0.5;
-	font-size: 14px;
-	color: #ffffff;
-	letter-spacing: 0;
-	font-weight: 400;
+const CardImage = styled.img`
+	width: 40px;
+	height: 40px;
+	border-radius: 100%;
 `;
 
-const Content = styled.div`
-	font-size: 20px;
-	color: #ffffff;
-	letter-spacing: 0;
-	text-align: center;
-	font-weight: 700;
-`;
-
-const Button = styled.div`
-	padding: 10px 20px;
-	background: #ffffff;
-	border-radius: 10px;
-	color: #000;
-	cursor: pointer;
-`;
-
-const Wrapper = styled.div`
+const UserInfo = styled.div`
+	width: 220px;
 	display: flex;
-	flex-direction: column;
-	gap: 20px;
-	padding-bottom: 20px;
+	gap: 12px;
+	align-items: center;
 `;
+
+const timestampToDatetime = (timestamp) => {
+	const date = new Date(timestamp);
+
+	function getMonthAbbreviation(month) {
+		const monthsAbbreviation = [
+			'Jan',
+			'Feb',
+			'Mar',
+			'Apr',
+			'May',
+			'Jun',
+			'Jul',
+			'Aug',
+			'Sep',
+			'Oct',
+			'Nov',
+			'Dec',
+		];
+		return monthsAbbreviation[month];
+	}
+
+	return `${date.getDate()} ${getMonthAbbreviation(
+		date.getMonth(),
+	)}, ${date.getFullYear()}`;
+};
+
+function convertYoctoNEARtoNEAR(yoctoNEAR) {
+	return Big(yoctoNEAR) / Big(10).pow(24).toFixed(0);
+}
 
 return (
-	<Wrapper>
-		<Header>
-			<div class='flex gap-2 flex-col'>
-				<Title>Total Balance</Title>
-				{/* <Content>$ {Number(value).toLocalString()}</Content> */}
-				<Content>$ 1,234,567</Content>
+	<Card>
+		<UserInfo>
+			<CardImage
+				src={data?.avatar}
+				alt='avatar'
+			/>
+			<div class='flex flex-col gap-1'>
+				<div>{data?.account_id}</div>
+				<div class='text-sm opacity-50'>
+					{timestampToDatetime(data?.create_at)}
+				</div>
 			</div>
-			<Button>Donate</Button>
-		</Header>
-		<Widget
-			src={`${accountId}/widget/Popula.Treasury.Token`}
-			props={props}
-		/>
-		<Widget
-			src={`${accountId}/widget/Popula.Treasury.Activity`}
-			props={props}
-		/>
-	</Wrapper>
+		</UserInfo>
+		<div class='flex-grow'>
+			Donate {convertYoctoNEARtoNEAR(data?.amount)} NEAR
+		</div>
+		<div class='opacity-50'>Tx</div>
+	</Card>
 );

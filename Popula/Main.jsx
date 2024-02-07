@@ -32,7 +32,13 @@ const renderPage = (page) => {
 				/>
 			);
 		case 'treasury':
-			return <div>treasury</div>;
+			return (
+				<Widget
+					src={`${accountId}/widget/Popula.Treasury.Page`}
+					props={props}
+				/>
+			);
+
 		case 'drips':
 			return (
 				<Widget
@@ -54,8 +60,17 @@ const selectPage = (page) => {
 	setCurrentPage(page);
 };
 
+const Wrapper = styled.div`
+	width: 100%;
+	height: auto;
+	display: flex;
+	gap: 16px;
+	color: #fff;
+	background: rgba(35, 37, 39, 0.85);
+`;
+
 return (
-	<div class='w-full h-auto flex bg-black gap-4 text-white bg-opacity-50'>
+	<Wrapper>
 		<Widget
 			src={`${accountId}/widget/Popula.NavigationSideBar`}
 			props={{
@@ -63,8 +78,9 @@ return (
 					selectPage(page);
 				},
 				currentPage: currentPage,
+				accountId: accountId,
 			}}
 		/>
-		<div class='flex-grow'>{renderPage(currentPage)}</div>
-	</div>
+		<div class='flex-grow pt-3'>{renderPage(currentPage)}</div>
+	</Wrapper>
 );

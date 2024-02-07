@@ -1,7 +1,18 @@
 const { data, accountId } = props;
 
+const Card = styled.div`
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+	display: flex;
+	gap: 16px;
+	padding: 20px 0;
+`;
+
+const copyLink = () => {
+	clipboard.writeText(`https://popula.io/d/${data.target_hash}`);
+};
+
 return (
-	<div class='flex gap-3 py-3 border-b'>
+	<Card class='flex gap-3 py-3 border-b w-full'>
 		<img
 			src={
 				data && data?.data.user.avatar
@@ -18,10 +29,12 @@ return (
 					<div class='flex gap-2 items-center'>
 						<div class='flex items-center justify-center w-3 h-3'>
 							<Widget
-								src={`${accountId}/widget/Popula.Icons.Bolt`}
+								src={`${accountId}/widget/Popula.Icons.Drip`}
 							/>
 						</div>
-						<div class='text-sm opacity-50'>{data?.data.drips}</div>
+						<div class='text-sm opacity-50'>
+							{data?.data.drips / 10000}
+						</div>
 					</div>
 				</div>
 				<div class='text-sm opacity-50'>
@@ -30,7 +43,11 @@ return (
 			</div>
 			<div>{data?.text}</div>
 			<div class='flex gap-4 items-center'>
-				<div class='flex gap-2 items-center'>
+				<a
+					class='flex gap-2 items-center'
+					href={`https://popula.io/d/${data.target_hash}`}
+					target='_blank'
+				>
 					<div class='flex items-center justify-center w-5 h-5 opacity-50'>
 						<Widget
 							src={`${accountId}/widget/Popula.Icons.Heart`}
@@ -41,8 +58,12 @@ return (
 							? `${data.data.like_count / 1000}K`
 							: data.data.like_count}
 					</div>
-				</div>
-				<div class='flex gap-2 items-center'>
+				</a>
+				<a
+					class='flex gap-2 items-center'
+					href={`https://popula.io/d/${data.target_hash}`}
+					target='_blank'
+				>
 					<div class='flex items-center justify-center w-5 h-5 opacity-50'>
 						<Widget
 							src={`${accountId}/widget/Popula.Icons.Comment`}
@@ -53,17 +74,14 @@ return (
 							? `${data.data.comment_count / 1000}K`
 							: data.data.comment_count}
 					</div>
-				</div>
-				<div class='flex items-center justify-center w-5 h-5 opacity-50'>
+				</a>
+				<div
+					class='flex items-center justify-center w-5 h-5 opacity-50 cursor-pointer'
+					onClick={copyLink}
+				>
 					<Widget src={`${accountId}/widget/Popula.Icons.Share`} />
-				</div>
-				<div class='flex items-center justify-center w-5 h-5 opacity-50'>
-					<Widget src={`${accountId}/widget/Popula.Icons.Link`} />
-				</div>
-				<div class='flex items-center justify-center w-5 h-5 opacity-50'>
-					<Widget src={`${accountId}/widget/Popula.Icons.Flag`} />
 				</div>
 			</div>
 		</div>
-	</div>
+	</Card>
 );

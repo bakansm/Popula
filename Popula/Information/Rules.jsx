@@ -16,7 +16,7 @@ return (
 			<div class='text-lg font-bold'>Rules</div>
 		</div>
 		<div class='h-px bg-white opacity-10 w-full' />
-		<div class='pl-4'>
+		<div class='pl-7'>
 			{rulesList.map((rule, key) => (
 				<Widget
 					src={`${accountId}/widget/Popula.Libs.Accordion`}

@@ -41,6 +41,50 @@ return (
 				<div>Create proposal</div>
 			</div>
 		</div>
+		{/* {data.map((proposal, key) => (
+      <div class="flex py-2">
+        <img
+          src={
+            proposal && proposal.data?.user?.avatar
+              ? proposal.data.user.avatar
+              : "https://ipfs.near.social/ipfs/bafkreia3uhds5nrrl2vzwvvdooef767iwslms75qabn55mnhvax6ak7f6a"
+          }
+          alt="avatar"
+          class="w-6 aspect-square rounded-full"
+        />
+        <div class="flex w-full flex-col gap-3">
+          <div>{proposal.data.user.name ?? proposal.data._id}</div>
+          <div>{proposal.data.user.text}</div>
+          <Widget src={`${accountId}/widget/Popula.Proposal.ProposalCard`} />
+          <div class="flex items-center justify-between">
+            <div class="flex gap-2">
+              <div class="w-6 h-6 flex items-center justify-center">
+                <Widget src={`${accountId}/widget/Popula.Icons.Comment`} />
+              </div>
+              <div>{data.data.comment_count}</div>
+            </div>
+            <div class="flex gap-2">
+              <div class="w-6 h-6 flex items-center justify-center">
+                <Widget src={`${accountId}/widget/Popula.Icons.Share`} />
+              </div>
+              <div>{data.data.share_count}</div>
+            </div>
+            <div class="flex gap-2">
+              <div class="w-6 h-6 flex items-center justify-center">
+                <Widget src={`${accountId}/widget/Popula.Icons.Heart`} />
+              </div>
+              <div>{data.data.like_count}</div>
+            </div>
+            <div class="flex gap-2">
+              <div class="w-6 h-6 flex items-center justify-center">
+                <Widget src={`${accountId}/widget/Popula.Icons.Bolt`} />
+              </div>
+              <div>{data.data.drips}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    ))} */}
 		<div class='flex py-3 gap-4'>
 			<img
 				src={

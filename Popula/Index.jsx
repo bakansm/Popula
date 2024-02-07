@@ -9,10 +9,32 @@ const Wrapper = styled.div`
 
 const Banner = styled.img`
 	width: 100%;
-	padding: 120px 236px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	@media screen and (max-width: 249px) {
+		padding: 20px 136px;
+	}
+
+	@media (min-width: 600px) {
+		padding: 40px 156px;
+	}
+
+	@media (min-width: 768px) {
+		padding: 60px 176px;
+	}
+
+	@media (min-width: 992px) {
+		padding: 80px 196px;
+	}
+
+	@media (min-width: 1200px) {
+		padding: 100px 216px;
+	}
+
+	@media (min-width: 1400px) {
+		padding: 120px 236px;
+	}
 `;
 
 const CardContainer = styled.div`
@@ -205,14 +227,7 @@ return (
 								<Title>Drips</Title>
 							</div>
 						</InfoGroup>
-						<Button>
-							<a
-								href=''
-								target='_blank'
-							>
-								Join
-							</a>
-						</Button>
+						<Button>Join</Button>
 					</CardBody>
 				</Card>
 			))}
